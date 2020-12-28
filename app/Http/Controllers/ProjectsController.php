@@ -28,4 +28,17 @@ class ProjectsController extends Controller
         //redirect back to projects homepage
         return \redirect('/projects');
     }
+
+    public function show(){
+
+    }
+    public function edit(){
+
+    }
+    public function update(){
+
+    }
+    public function destroy(){
+
+    }
 }
