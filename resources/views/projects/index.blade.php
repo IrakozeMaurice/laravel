@@ -3,20 +3,23 @@
 
 @section('content')
     <h1>projects</h1>
-    <table class="table">
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Date Created</th>
-            <th>Date Updated</th>
-        </tr>
-        @foreach ($projects as $project)
+    <div class="col-lg-8">
+        <br>
+        <table class="table">
             <tr>
-                <td>{{ $project->title }}</td>
-                <td>{{ $project->description }}</td>
-                <td>{{ $project->created_at }}</td>
-                <td>{{ $project->updated_at }}</td>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Date Created</th>
+                <th>Date Updated</th>
             </tr>
-        @endforeach
-    </table>
+            @foreach ($projects as $project)
+                <tr>
+                    <td>{{ $project->title }}</td>
+                    <td>{{ $project->description }}</td>
+                    <td>{{ $project->created_at }}</td>
+                    <td>{{ $project->updated_at }}</td>
+                </tr>
+            @endforeach
+        </table>
+    </div>
 @endsection
