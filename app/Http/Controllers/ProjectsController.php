@@ -8,49 +8,51 @@ use Illuminate\Http\Request;
 class ProjectsController extends Controller
 {
     public function index(){
+
         $projects = Project::all();
         return view('projects.index' , ['projects' => $projects]);
+
     }
 
     public function create(){
+
         return view('projects.create');
+
     }
 
     public function store(){
-        //create a new project
-        $project = new Project;
-        $project -> title = request('title');
-        $project -> description = request('description');
 
-        //save the project in the database
-        $project -> save();
+        Project::create(request(['title' , 'description']));
 
-        //redirect back to projects homepage
-        return \redirect('/projects');
-    }
-
-    public function show(){
+        return redirect('/projects');
 
     }
 
-    public function edit($id){
-        $project = Project::findOrFail($id);
+    public function show(Project $project){
+
+        return view('projects.show', compact('project'));
+
+    }
+
+    public function edit(Project $project){
+
         return view('projects.edit', compact('project'));
+
     }
 
-    public function update($id){
-        $project = Project::findOrFail($id);
-        $project->title = request('title');
-        $project->description = request('description');
+    public function update(Project $project){
 
-        $project->save();
+        $project->update(request(['title' , 'description']));
 
         return redirect('/projects');
+
     }
 
-    public function destroy($id){
-        Project::findOrFail($id)->delete();
+    public function destroy(Project $project){
+
+        $project->delete();
 
         return redirect('/projects');
+
     }
 }
