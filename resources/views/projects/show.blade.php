@@ -6,4 +6,12 @@
     <p>{{ $project->description }}</p>
     <br>
     <a href="/projects/{{ $project->id }}/edit">Edit</a>
+    @if ($project->tasks->count())
+        <div>
+            @foreach ($project->tasks as $task)
+                <li>{{ $task->description }}</li>
+                <span>Completed: {{ $task->completed }}
+            @endforeach
+        </div>
+    @endif
 @endsection
