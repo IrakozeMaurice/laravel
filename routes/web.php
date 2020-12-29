@@ -11,8 +11,11 @@
 |
 */
 
+use App\Http\Controllers\ProjectTasksController;
 use Illuminate\Support\Facades\Route;
 
 Route::resource('projects', 'ProjectsController');
 
 Route::patch('/tasks/{task}', 'ProjectTasksController@update');
+
+Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
