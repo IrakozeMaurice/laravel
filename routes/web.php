@@ -12,7 +12,16 @@
 */
 
 use App\Http\Controllers\ProjectTasksController;
+use App\Services\Twitter;
 use Illuminate\Support\Facades\Route;
+
+app()->singleton('twitter', function () {
+    return new Twitter('alksflaf');
+});
+
+Route::get('/', function () {
+    dd(app('App\Example'), app('twitter'), app('twitter'));
+});
 
 Route::resource('projects', 'ProjectsController');
 
