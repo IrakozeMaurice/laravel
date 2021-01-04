@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ProjectCreated;
 use App\Project;
 use Illuminate\Http\Request;
+use Mail;
 
 class ProjectsController extends Controller
 {
@@ -33,7 +35,11 @@ class ProjectsController extends Controller
 
         $attributes['owner_id'] = auth()->id();
 
-        Project::create($attributes);
+        $project = Project::create($attributes);
+
+        Mail::to($project->owner->email)->send(
+            new ProjectCreated($project)
+        );
 
         return redirect('/projects');
     }
